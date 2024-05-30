@@ -1,0 +1,35 @@
+mcprog
+
+Description
+This application is designed to show you modular programming technics using C. You should consider it as educational source. In production applications you will need much more perfect tools for building, testing, documentation and working in teams.
+
+Dependencies
+Linux, Bash, GCC.
+
+Usage
+It operates like a server. On application startup you can choose between standart i\o server or TCP server. It has objects storage inside. Objects are organized hierachically.  You can access objects with the help of server feature. Each object has its command set. Any command of this set you can apply to object. See "help/application_objects.svg". For standart i/o server you can type commands in terminal where this application is running. For TCP server you should send command from other terminal, like this:
+printf "app/list add item1\n" | nc 127.0.0.1 55555
+
+Help system
+The folowing features will support your exploration:
+	"README" files in some directories,
+	graphical files in "help" directory,
+	comments in source code files
+
+
+Test system
+Some modules (complex and with dynamic memory allocation ones) have tests for them. Each test is a standalone application which uses module being tested. It is recommended to run tests under Valgrind. All test are quite simple and have small coverage.
+test.sh - is a bash script for automatically sending commands to this application with TCP server enabled.
+
+Build system
+Building is implemented using bash script files named "build.sh" located in each module's directory.
+When building application each module builds first its dependencies and then itself.
+You can build application with this command:
+./build.sh
+As a result you will have executable file: mcprog.
+You can build any module with this command:
+./build.sh master
+Build system misses:
+1. modification date not considered, so we build module again even when it has no changes in source files after last build
+2. dependencies are duplicated in source files and building script files
+3. each module builds its dependencies, so if we have two modules with the same dependencies, we build each dependency twice.

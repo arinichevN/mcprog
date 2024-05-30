@@ -1,0 +1,10 @@
+In this directory you can find some graphical files displaying internal structure of this application. .dia files are source files and .svg files are converted ones. Source files were created using Dia 0.97.
+
+Dependency diagram
+This diagram shows all modules (which are translation units) of this application and dependencies between them. It does not show dependencies from third-party libraries. All dependencies form directed acyclic graph. It is very important to have lack of cycles. But there are two cycles in this diagram. "Node" and "Item" have pointers to themselves. It is possible because all pointers have single interface in C. You may do so only within single translation unit. 
+
+Class diagram
+This diagram is often used for OOP-style programs. But can we use it for MOP-style programs? Why not?! This particular class diagram shows only most significant elements and relations.
+
+Application objects
+This diagram is intended for users. It helps to understand how to use this application.

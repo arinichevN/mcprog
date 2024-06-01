@@ -27,7 +27,7 @@ function buildDependencies {
 
 function master {
 	clear && clear
-	local MODULE_NAME=Ton  #local settings
+	local MODULE_NAME=Timer  #local settings
 	MODE=-DMODE_TEST
 	GCC_OPTIONS="-Wall -pedantic -g"
 	buildModule $MODULE_NAME && \
@@ -36,7 +36,7 @@ function master {
 
 function slave {
 	local MY_DIR=$(pwd)
-	local MODULE_NAME=Ton  #local settings
+	local MODULE_NAME=Timer  #local settings
 	echo $TAB "building " $MODULE_NAME "..."
 	buildDependencies && \
 	

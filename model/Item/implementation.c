@@ -93,8 +93,8 @@ static void start_DUMMY(Item *self){
 
 static void start_REAL(Item *self){
 	self->start = start_DUMMY;
-	ton_setInterval(&self->timer, self->start_duration);
-	ton_reset(&self->timer);
+	timer_setInterval(&self->timer, self->start_duration);
+	timer_reset(&self->timer);
 	self->control = control_STARTING;
 	self->stop = stop_REAL;
 }
@@ -107,8 +107,8 @@ static void stop_DUMMY(Item *self){
 
 static void stop_REAL(Item *self){
 	self->stop = stop_DUMMY;
-	ton_setInterval(&self->timer, self->stop_duration);
-	ton_reset(&self->timer);
+	timer_setInterval(&self->timer, self->stop_duration);
+	timer_reset(&self->timer);
 	self->control = control_STOPPING;
 	self->start = start_REAL;
 }
@@ -121,13 +121,13 @@ static void control_IDLE(Item *self){
 }
 
 static void control_STARTING(Item *self){
-	if(ton(&self->timer)){
+	if(timer_done(&self->timer)){
 		self->control = control_STEP1;
 	}
 }
 
 static void control_STOPPING(Item *self){
-	if(ton(&self->timer)){
+	if(timer_done(&self->timer)){
 		self->control = control_IDLE;
 	}
 }

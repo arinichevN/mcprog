@@ -1,7 +1,7 @@
 //					implementation dependencies
 #include "interface.h"
 
-int ton(Ton *self) {
+int timer_done(Timer *self) {
 	stime_t now = getCurrentTime();
 	if(stime_compareM(&now, &self->end) == YES) {
 		return 1;
@@ -9,7 +9,7 @@ int ton(Ton *self) {
 	return 0;
 }
 
-int tonr(Ton *self) {
+int timer_doneReset(Timer *self) {
 	stime_t now = getCurrentTime();
 	if(stime_compareM(&now, &self->end) == YES) {
 		self->end = stime_add(&now, &self->interval);
@@ -18,27 +18,27 @@ int tonr(Ton *self) {
 	return 0;
 }
 
-void ton_setInterval(Ton *self, stime_t interval) {
+void timer_setInterval(Timer *self, stime_t interval) {
 	self->interval = interval;
 }
 
-stime_t ton_getInterval(Ton *self){
+stime_t timer_getInterval(Timer *self){
 	return self->interval;
 }
 
-void ton_reset(Ton *self) {
+void timer_reset(Timer *self) {
 	stime_t now = getCurrentTime();
 	self->end = stime_add(&now, &self->interval);
 }
 
-stime_t ton_timePassed(Ton *self) {
+stime_t timer_getTimePassed(Timer *self) {
 	stime_t now = getCurrentTime();
 	stime_t start = stime_subtract(&self->end, &self->interval);
 	stime_t out = stime_subtract(&now, &start);
 	return out;
 }
 
-stime_t ton_timeRest(Ton *self) {
+stime_t timer_getTimeRest(Timer *self) {
 	stime_t now = getCurrentTime();
 	stime_t out;
 	if(stime_compareM(&self->end, &now) == YES) {

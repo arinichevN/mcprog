@@ -24,7 +24,7 @@ function buildDependency {
 function buildDependencies {
 	buildDependency ../../lib/result_t && \
 	buildDependency ../stime_t && \
-	buildDependency ../Ton && \
+	buildDependency ../Timer && \
 	buildDependency ../Node && \
 	buildDependency ../iCommand/common && \
 	buildDependency ../PStSp

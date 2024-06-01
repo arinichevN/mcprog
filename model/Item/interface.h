@@ -5,7 +5,7 @@
 #include <stddef.h>
 #include "../../lib/result_t/interface.h"
 #include "../../lib/stime_t/interface.h"
-#include "../../lib/Ton/interface.h"
+#include "../../lib/Timer/interface.h"
 #include "../../lib/Node/interface.h"
 #include "../../lib/iCommand/common/interface.h"
 #include "../../lib/iCommand/PStSp/interface.h"
@@ -34,7 +34,7 @@
 typedef struct item_st Item;
 struct item_st{
 	int id;
-	Ton timer;
+	Timer timer;
 	stime_t start_duration;
 	stime_t stop_duration;
 	void (*start)(Item *);

@@ -7,7 +7,7 @@ GCC_OPTIONS=$3
 LIB_DIR=$4
 TAB=$5
 TAB="${TAB}-"
-MODULE_NAME_G=iCommandACDP
+MODULE_NAME=iCommandACDP
 
 function buildModule {
 	gcc $MODE $GCC_OPTIONS -c implementation.c -o $1.o
@@ -28,7 +28,6 @@ function buildDependencies {
 
 function master {
 	clear && clear
-	local MODULE_NAME=$MODULE_NAME_G
 	MODE=-DMODE_TEST
 	GCC_OPTIONS="-Wall -pedantic -g"
 	buildModule $MODULE_NAME && \
@@ -37,7 +36,6 @@ function master {
 
 function slave {
 	local MY_DIR=$(pwd)
-	local MODULE_NAME=$MODULE_NAME_G
 	echo $TAB "building " $MODULE_NAME "..."
 	buildDependencies && \
 	

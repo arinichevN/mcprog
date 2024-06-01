@@ -7,7 +7,7 @@ GCC_OPTIONS=$3
 LIB_DIR=$4
 TAB=$5
 TAB="${TAB}-"
-MODULE_NAME_G=server
+MODULE_NAME=server
 
 function buildModule {
 	:
@@ -32,7 +32,6 @@ function master {
 
 function slave {
 	local MY_DIR=$(pwd)
-	local MODULE_NAME=$MODULE_NAME_G
 	echo $TAB "building " $MODULE_NAME "..."
 	buildDependencies && \
 	

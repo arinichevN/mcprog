@@ -14,7 +14,6 @@ TAB=""
 THIS_DIR=$(pwd)
 
 
-echo "lib dir is here " $LIB_DIR
 #building dependencies
 cd ../ && \
 ./build.sh slave $MODE "$GCC_OPTIONS" $LIB_DIR $TAB

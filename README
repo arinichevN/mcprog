@@ -7,7 +7,7 @@ Dependencies
 Linux, Bash, GCC.
 
 Usage
-It operates like a server. On application startup you can choose between standart i\o server or TCP server. It has objects storage inside. Objects are organized hierachically.  You can access objects with the help of server feature. Each object has its command set. Any command of this set you can apply to object. See "help/application_objects.svg". For standart i/o server you can type commands in terminal where this application is running. For TCP server you should send command from other terminal, like this:
+It operates like a server. On application startup you can choose between standart i\o server or TCP server. It has objects storage inside. Objects are organized hierachically. You can access objects with the help of server feature. Each object has its command set. Any command of this set you can apply to object. See "help/application_objects.svg". For standart i/o server you can type commands in terminal where this application is running. For TCP server you should send command from other terminal, like this:
 printf "app/list add item1\n" | nc 127.0.0.1 55555
 
 Help system

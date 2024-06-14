@@ -18,6 +18,7 @@ struct iserver_st {
 	void (*free)();
 };
 
+extern void iServer_init(iServer *self);
 extern void iServer_setParam(iServer *self, result_t (*begin_function)(serveFunc_t), void (*greeting_function)(), void (*control_function)(), void (*free_function)());
 extern result_t iServer_begin(iServer *self, serveFunc_t serve_func);
 extern void iServer_greeting(iServer *self);

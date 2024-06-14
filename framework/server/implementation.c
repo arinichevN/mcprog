@@ -15,6 +15,14 @@
 static iServer server_n;
 static iServer *server = &server_n;
 
+static void freeDummy(){;}
+static void freeReal(){iServer_free(server);}
+static void (*freeFunc)() = freeDummy;
+
+static void controlDummy(){;}
+static void controlReal(){iServer_control(server);}
+static void (*controlFunc)() = controlDummy;
+
 static char getFirstChar(){
 	char fc = 0;
 	for(size_t i=0; ;i++){
@@ -55,6 +63,9 @@ static void selectServer(){
 }
 
 result_t appServer_begin(serveFunc_t serveFunction) {
+	iServer_init(server);
+	freeFunc = freeReal;
+	controlFunc = controlReal;
 	selectServer();
 	if(iServer_begin(server, serveFunction) != RESULT_SUCCESS){
 		return RESULT_FAILURE;
@@ -64,11 +75,10 @@ result_t appServer_begin(serveFunc_t serveFunction) {
 }
 
 void appServer_control(){
-	iServer_control(server);
+	controlFunc();
 }
 
 void appServer_free(){
-	tcpServer_free();
-	stdServer_free();
+	freeFunc();
 }
 

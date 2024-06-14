@@ -117,25 +117,6 @@ function startStopItem {
 	printf "app/list delete $name\n" | nc $IP_ADDRESS $PORT
 }
 
-function startStopItem1 {
-	printf "begin \n"
-	local name="stspItem"
-	printf "app/list add $name\n" | nc $IP_ADDRESS $PORT
-
-	printf "app/list/$name start\n" | nc $IP_ADDRESS $PORT
-
-	var=$(printf "app/list/$name print\n" | nc $IP_ADDRESS $PORT)
-	if echo "$var" | grep -c 'RUN'; then
-		printf "found...."
-	else
-		echo "not found"
-	fi
-	printf "app/list/$name print\n" | nc $IP_ADDRESS $PORT
-
-	printf "app/list delete $name\n" | nc $IP_ADDRESS $PORT
-	printf "var is $var\n"
-}
-
 function overflowTest {
 	printf "app/list add dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\n" | nc $IP_ADDRESS $PORT
 }

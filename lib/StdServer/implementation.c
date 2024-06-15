@@ -36,13 +36,13 @@ static void (*freeFunction)() = free_DUMMY;
 result_t stdServer_begin(serveFunc_t serve_func, size_t request_char_count, size_t response_char_count){
 	result_t r = serverPackage_begin(request, request_char_count);
 	if(r != RESULT_SUCCESS){
-		fprintf(stderr, "stdServer_begin: failed to allocate memory for request package\n");
+		fprintf(stderr, "stdServer_begin: failed to begin request package\n");
 		return RESULT_FAILURE;
 	}
 	r = serverPackage_begin(response, response_char_count);
 	if(r != RESULT_SUCCESS){
 		serverPackage_free(request);
-		fprintf(stderr, "stdServer_begin: failed to allocate memory for response package\n");
+		fprintf(stderr, "stdServer_begin: failed to begin response package\n");
 		return RESULT_FAILURE;
 	}
 	serve_function = serve_func;
@@ -91,7 +91,6 @@ static void serve(){
 	}
 }
 
-
 void stdServer_control(){
 	struct pollfd pfds[1] = {
 		{STDIN_FILENO, POLLIN, 0}
@@ -110,7 +109,6 @@ void stdServer_control(){
 		return;
 	}
 }
-
 
 void stdServer_free(){
 	freeFunction();

@@ -73,13 +73,13 @@ static result_t tcpBegin (int *fd, int port) {
 result_t tcpServer_begin(serveFunc_t serve_func, size_t request_char_count, size_t response_char_count, int port){
 	result_t r = serverPackage_begin(request, request_char_count);
 	if(r != RESULT_SUCCESS){
-		fprintf(stderr, "tcpServer_begin: failed to allocate memory for request package\n");
+		fprintf(stderr, "tcpServer_begin: failed to begin request package\n");
 		return RESULT_FAILURE;
 	}
 	r = serverPackage_begin(response, response_char_count);
 	if(r != RESULT_SUCCESS){
 		serverPackage_free(request);
-		fprintf(stderr, "tcpServer_begin: failed to allocate memory for response package\n");
+		fprintf(stderr, "tcpServer_begin: failed to begin response package\n");
 		return RESULT_FAILURE;
 	}
 	r = tcpBegin(&tcp_fd, port);
